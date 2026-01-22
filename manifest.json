@@ -1,0 +1,51 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+  "manifest_version": 3,
+  "name": "RoJoin - Найти игрока Roblox",
+  "version": "21",
+  "description": "Находите и присоединяйтесь к любому игроку Roblox! RoJoin позволяет найти друга в любой игре, даже если функция 'Присоединиться' отключена. Просто введите никнейм и получите доступ к серверу, на котором он находится.",
+  "icons": {
+    "16": "images/icon16.png",
+    "32": "images/icon32.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "short_name": "RoJoin",
+  "permissions": [
+    "scripting",
+    "storage",
+    "cookies",
+    "webRequest"
+  ],
+  "action": {
+    "default_title": "RoJoin - Найти игрока Roblox"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "*://*.roblox.com/*",
+    "*://discord.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.roblox.com/*"
+      ],
+      "js": [
+        "findPlayers.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "images/*",
+        "storage/*"
+      ],
+      "matches": [
+        "*://*.roblox.com/*"
+      ]
+    }
+  ]
+}
